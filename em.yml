@@ -2,6 +2,8 @@ name: Bool
 version: 0.1.0
 
 dependencies:
+
+dev-dependencies:
   cSpec: Oblivious-Oblivious/cSpec
 
 license: GPLv3
