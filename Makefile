@@ -10,11 +10,11 @@ UNUSED_WARNINGS = -Wno-unused-parameter -Wno-unused-variable -Wno-unused-functio
 REMOVE_WARNINGS = -Wno-int-conversion
 NIX_LIBS = -shared -fPIC
 OSX_LIBS = -c
-DEPS = $(shell find ./libs -name "*.*o" | xargs ls -d)
+DEPS = $(shell find ./export -name "*.*o") $(shell find ./libs -name "*.*o")
 
 OUTPUT = $(NAME)
 
-TESTINPUT = $(NAME).spec.c
+TESTINPUT = spec/$(NAME).spec.c
 TESTOUTPUT = spec_results
 
 all: default
@@ -24,10 +24,10 @@ make_export:
 
 copy_headers:
 	mkdir export/$(NAME) && mkdir export/$(NAME)/headers
-	cp src/$(NAME)/headers/* export/$(NAME)/headers/
+	cp -r src/$(NAME)/headers/* export/$(NAME)/headers/
 	cp src/$(NAME).h export/
 
-default: make_export
+default: lib
 
 lib: $(shell uname)
 
@@ -36,13 +36,13 @@ Darwin: make_export copy_headers
 Linux: make_export copy_headers
 
 test:
-	cd spec && $(CC) $(OPT) $(VERSION) $(HEADERS) $(FLAGS) $(WARNINGS) $(REMOVE_WARNINGS) $(UNUSED_WARNINGS) -Wno-implicit-function-declaration $(LIBS) -o $(TESTOUTPUT) $(DEPS) $(TESTFILES) $(TESTINPUT)
+	$(CC) $(OPT) $(VERSION) $(HEADERS) $(FLAGS) $(WARNINGS) $(REMOVE_WARNINGS) $(UNUSED_WARNINGS) -Wno-implicit-function-declaration $(LIBS) -o $(TESTOUTPUT) $(DEPS) $(TESTFILES) $(TESTINPUT)
 	@echo
-	./spec/$(TESTOUTPUT)
+	./$(TESTOUTPUT)
 
 spec: test
 
 clean:
-	$(RM) -r spec/$(TESTOUTPUT)
+	$(RM) -r $(TESTOUTPUT)
 	$(RM) -r export
 
