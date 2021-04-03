@@ -6,6 +6,8 @@
     #define bool unsigned char
     #define true 1
     #define false 0
+#else
+    #include <stdbool.h>
 #endif
 
 #endif
