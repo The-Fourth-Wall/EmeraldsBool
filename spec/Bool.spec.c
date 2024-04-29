@@ -1,23 +1,11 @@
-#include "Bool.spec.h"
+#ifndef __BOOL_SPEC_H_
+#define __BOOL_SPEC_H_
 
-module(T_Bool, {
-    describe("Bool", {
-        it("returns true", {
-            bool v = true;
-            assert_that(v is true);
-        });
+#include "../libs/cSpec/export/cSpec.h"
+#include "standard_boolean/standard_boolean.module.spec.h"
 
-        it("returns false", {
-            bool v = false;
-            assert_that(v is false);
-        });
-    });
-});
+spec_suite({ T_Bool(); });
 
-spec_suite({
-    T_Bool();
-});
+int main(void) { run_spec_suite("all"); }
 
-spec({
-    run_spec_suite("all");
-});
+#endif
