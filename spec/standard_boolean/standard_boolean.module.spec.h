@@ -13,4 +13,4 @@ module(T_Bool, {
       assert_that(v is false);
     });
   });
-});
+})
