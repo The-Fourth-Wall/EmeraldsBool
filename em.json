@@ -3,7 +3,9 @@
 
   "version": "0.1.0",
 
-  "dependencies": {},
+  "dependencies": {
+    "EmeraldsPreprocessor": "The-Fourth-Wall/EmeraldsPreprocessor"
+  },
 
   "dev-dependencies": {
     "cSpec": "Oblivious-Oblivious/cSpec"
