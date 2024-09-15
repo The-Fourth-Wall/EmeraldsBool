@@ -1,5 +1,5 @@
-#include "../../libs/cSpec/export/cSpec.h"
-#include "../../src/standard_boolean/standard_boolean.h"
+#include "../libs/cSpec/export/cSpec.h"
+#include "../src/EmeraldsBool.h"
 
 module(T_Bool, {
   describe("EmeraldsBool", {

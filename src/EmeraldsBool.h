@@ -19,8 +19,15 @@
 #ifndef __EMERALDSBOOL_H_
 #define __EMERALDSBOOL_H_
 
-#include "standard_boolean/standard_boolean.h"
+#include "../libs/EmeraldsPreprocessor/export/EmeraldsPreprocessor.h"
 
-#include <stdio.h>
+/** @param bool -> A 'big' enough size to hold both 1 and 0 **/
+#if PREPROCESSOR_C_VERSION < 2023
+  #define bool  unsigned char
+  #define true  1
+  #define false 0
+#else
+  #include <stdbool.h>
+#endif
 
 #endif
